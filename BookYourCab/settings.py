@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-xxv7v%9b-!u+d(8h@pso2t+0f+)=p!ge(^1hdxga^$f%2^x!rq
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -129,6 +129,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 CORS_ORIGIN_WHITELIST = [
     "http://localhost:3000",
+    '*',
 ]
 
 # Email settings
