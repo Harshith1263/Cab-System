@@ -6,6 +6,7 @@ import Notification from './Notification';
 import 'react-toastify/dist/ReactToastify.css';
 import 'bootstrap/dist/css/bootstrap.min.css'; // Import Bootstrap CSS
 import './BookingForm.css'; // Import your custom CSS file
+import { BACKEND_URL } from '../App';
 
 const BookingForm = () => {
   const [source, setSource] = useState('');
@@ -50,7 +51,7 @@ const BookingForm = () => {
 
     console.log('Booking data:', bookingData);
     console.log(JSON.stringify(bookingData))
-    fetch(`http://localhost:8000/api/bookcab/`, {
+    fetch(BACKEND_URL+`bookcab/`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -94,7 +95,7 @@ const BookingForm = () => {
 
 
   const fetchCabList = () => {
-    fetch('http://localhost:8000/api/cablist/')
+    fetch(+BACKEND_URL+'cablist/')
     .then(response => response.json())
     .then(data => {
       console.log('Cab list:', data);
@@ -106,7 +107,7 @@ const BookingForm = () => {
 
   useEffect(() => {
     if(source&&destination&&selectedCab){
-      fetch(`http://localhost:8000/api/estimate-cost/${source}/${destination}/${selectedCab}/`)
+      fetch(BACKEND_URL+`estimate-cost/${source}/${destination}/${selectedCab}/`)
       .then(response => {
         if (!response.ok) {
           throw new Error('Failed to fetch estimated cost');
@@ -134,7 +135,7 @@ const BookingForm = () => {
   }, [source, destination]);
   
   const calculateEstimatedTime = (source, destination) => {
-    fetch(`http://localhost:8000/api/calc-estimated-time/${source}/${destination}/`)
+    fetch(BACKEND_URL+`calc-estimated-time/${source}/${destination}/`)
       .then(response => {
         if (!response.ok) {
           throw new Error('Failed to fetch estimated time');
@@ -162,7 +163,7 @@ const BookingForm = () => {
 
   const handleCabAvailability = () => {
     console.log('Checking cab availability:', source, destination, dateTime.toISOString().slice(0, -5), selectedCab);
-    fetch(`http://localhost:8000/api/check-availability/${source}/${destination}/${dateTime.toISOString().slice(0, -5)}/${selectedCab}/`)
+    fetch(BACKEND_URL+`check-availability/${source}/${destination}/${dateTime.toISOString().slice(0, -5)}/${selectedCab}/`)
     .then(response => {
       if (!response.ok) {
         throw new Error('Failed to fetch cab availability');
@@ -188,7 +189,7 @@ const BookingForm = () => {
   , []);
 
   const fetchLocations = () => {
-    fetch('http://localhost:8000/api/get-locationnames/')
+    fetch(BACKEND_URL+'get-locationnames/')
     .then(response => response.json())
     .then(data => {
       console.log('Locations:', data);

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { BACKEND_URL } from '../App';
 
 const CabList = () => {
   const [cabs, setCabs] = useState([]);
@@ -6,7 +7,7 @@ const CabList = () => {
   useEffect(() => {
     const fetchCabs = async () => {
       try {
-        const response = await fetch('http://localhost:8000/api/cablist/');
+        const response = await fetch(BACKEND_URL+'cablist/');
         if (!response.ok) {
           throw new Error('Failed to fetch cabs');
         }
