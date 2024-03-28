@@ -79,7 +79,7 @@ WSGI_APPLICATION = 'BookYourCab.wsgi.application'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
 DATABASES = {
-    'default': dj_database_url.parseurl('postgres://root:UeIV2wIWusG0Ay64DmnUHycctfcq9p7N@dpg-co2sbh7109ks738oorbg-a.singapore-postgres.render.com/cabdb')
+    'default': dj_database_url.parse('postgres://root:UeIV2wIWusG0Ay64DmnUHycctfcq9p7N@dpg-co2sbh7109ks738oorbg-a.singapore-postgres.render.com/cabdb')
 }
 
 
